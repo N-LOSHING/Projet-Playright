@@ -3,10 +3,12 @@ import { Page, expect } from '@playwright/test';
 
     //SE CONNECTER
     export async function connecter(page: Page) {
+        const login = "monlogin"
+        const password = "mon password"
         await page.goto('https://tao-admin-develop.qual.skazy.cloud/login');
         await page.waitForURL('https://tao-admin-develop.qual.skazy.cloud/login');
-        await page.getByLabel('Votre login').fill('maintenance.inge@skazy.nc');
-        await page.getByLabel('Votre mot de passe').fill('password23A');
+        await page.getByLabel('Votre login').fill(login);
+        await page.getByLabel('Votre mot de passe').fill(password);
         await page.getByRole('button', {name : 'Se connecter'}).click();
         expect(page.locator('input#SelectComp_selectTenant')).toBeVisible();
         await page.locator('input#SelectComp_selectTenant').fill("Mairie de Puna'auia");
